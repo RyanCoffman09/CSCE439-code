@@ -1,0 +1,13 @@
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/1/10
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/1/4
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/2/10
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/2/2
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/1
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/10
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/2
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/3
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/4
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/5
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/6
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/7
+/mnt/c/Users/rcof8/Downloads/challenge.zip/challenge_ds/malware/6/8

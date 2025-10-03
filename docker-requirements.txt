@@ -1,0 +1,15 @@
+
+flask>=2.2.5
+gevent>=22.10.2
+envparse
+annoy
+pefile
+tqdm
+pandas
+signify
+
+numpy==1.25.2
+scikit-learn==1.2.2
+lightgbm==3.3.5
+joblib==1.2.0
+#torch==1.13.1

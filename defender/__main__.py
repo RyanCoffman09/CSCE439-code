@@ -1,0 +1,57 @@
+import os
+import envparse
+#import torch
+from defender.apps import create_app
+#from defender.ensamblemodels import EnsembleModel
+#from defender.models.rawbyte_cnn import RawByteCNN
+# CUSTOMIZE: import model to be used
+# from defender.models.ember_model import StatefulNNEmberModel
+# from defender.models.nfs_behemot_model import NFSBehemotModel
+# from defender.models.nfs_commite_model import NFSCommiteBehemotModel
+# from defender.models.nfs_model import PEAttributeExtractor, NFSModel, NeedForSpeedModel
+from defender.models.dummy_model import DummyModel
+#from defender.models.binarymodel import TorchByteModel
+if __name__ == "__main__":
+    # retrive config values from environment variables
+    model_thresh = envparse.env("DF_MODEL_THRESH", cast=float, default=0.5)
+    model_name = envparse.env("DF_MODEL_NAME", cast=str, default="thrember")
+    model_ball_thresh = envparse.env("DF_MODEL_BALL_THRESH", cast=float, default=0.25)
+    model_max_history = envparse.env("DF_MODEL_HISTORY", cast=int, default=10_000)
+
+    # construct absolute path to ensure the correct model is loaded
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # CUSTOMIZE: app and model instance
+    # model = StatefulNNEmberModel(model_gz_path,
+    #                              model_thresh,
+    #                              model_ball_thresh,
+    #                              model_max_history,
+    #                              model_name)
+    
+    # model = NFSBehemotModel()
+    # model = NFSCommiteBehemotModel()
+    # model = NFSModel(open(os.path.dirname(__file__) + "/models/nfs_full.pickle", "rb"))
+    # model = NFSModel(open(os.path.dirname(__file__) + "/models/nfs_libraries_functions_nostrings.pickle", "rb"))
+
+####################################
+## COPY SOMETHING LIKE THIS FOR MODEL 2
+    ember_model_path = os.path.join(base_dir, "models", "Ember2024.model")
+    model1 = DummyModel(
+        ember_model_path,
+        thresh=.45,
+        name=model_name
+    )
+#######################################
+    # MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "rawbyte_model.pt")
+    # model2 = TorchByteModel(model_path=MODEL_PATH, thresh=.4, name=model_name,model_class=RawByteCNN)
+    # combined_model = EnsembleModel(model1, model2, combine="or")
+    app = create_app(model1)
+
+    import sys
+    port = int(sys.argv[1]) if len(sys.argv) == 2 else 8080
+
+    from gevent.pywsgi import WSGIServer
+    http_server = WSGIServer(('', port), app)
+    http_server.serve_forever()
+
+    # curl -XPOST --data-binary @somePEfile http://127.0.0.1:8080/ -H "Content-Type: application/octet-stream"
